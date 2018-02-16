@@ -17,11 +17,14 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.17.2",
-    "express": "^4.15.0",
+    "express": "^4.16.2",
     "jquery": "^3.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "twilio": "^3.11.3",
+    "twitter": "^1.7.1"
   }
 }

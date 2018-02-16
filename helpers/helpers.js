@@ -31,6 +31,11 @@ function sendMessage(num, message) {
   })
 }
 
+function verifyUser(user) {
+
+}
+
 exports.getTweets = getTweets;
 exports.sendMessage = sendMessage;
+exports.verifyUser = verifyUser;
 

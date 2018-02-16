@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -17,10 +16,10 @@ class App extends React.Component {
     axios.post('/twilio', { 
       number: this.state.phoneNumber,
       latestTweet: this.state.latestTweet
-     })
+    })
       .then((res) => {
-        //this.showTweets(this.state.user);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
       })
   }
@@ -70,7 +69,7 @@ class App extends React.Component {
           Twitter Handle: <input onChange={this.updateInput.bind(this)} type="text" name="user" /><br />
           Your Phone Number: <input onChange={this.updateInput.bind(this)} type="text" name="phone-number" />          
         </form>
-        <button onClick={this.showTweets.bind(this)}>SUB</button>
+        <button onClick={this.showTweets.bind(this)}>Send Latest Tweet</button>
       </div>
     )
   }

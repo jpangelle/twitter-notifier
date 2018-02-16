@@ -3,16 +3,17 @@ const bodyParser = require('body-parser');
 const request = require('request')
 const app = express();
 const helpers = require('../helpers/helpers');
+const moment = require('moment');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json())
 
 app.post('/twilio', (req, res) => {
   const number = req.body.number;
+  const date = moment(req.body.latestTweet.tweetTime, "ddd MMM DD HH:mm:ss Z YYYY").format('dddd, MMMM Do, YYYY [at] h:mm a');
   const {
     username, 
     tweet, 
-    tweetTime: time,
     numberOfFavorites: faves,
     numberOfRetweets: rts
   } = req.body.latestTweet;  
@@ -20,10 +21,8 @@ app.post('/twilio', (req, res) => {
   
 "${tweet}"
 
-This was tweeted at ${time} and has ${faves} favorites and ${rts} retweets.`
-  //comment this out when demoing
-  //res.json('Number:', number);
-  //uncomment out when demoing
+This was tweeted on ${date} and has currently been favorited ${faves} times and retweeted ${rts} times.`
+
   helpers.sendMessage(number, tweetStringed).then((message) => res.json(message.sid));
 })
 

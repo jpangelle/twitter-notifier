@@ -7,47 +7,70 @@ class App extends React.Component {
   constructor(props) {
   	super(props)
   	this.state = {
-      user: ''
+      user: '',
+      phoneNumber: null,
+      latestTweet: null
   	}
   }
 
   sendMessage() {
-    axios.post('/twilio').then((res) => {
-      console.log('Success!')
-      this.showTweets(this.state.user);
-    }).catch((error) => {
-      console.log(error);
-    })
+    axios.post('/twilio', { 
+      number: this.state.phoneNumber,
+      latestTweet: this.state.latestTweet
+     })
+      .then((res) => {
+        //this.showTweets(this.state.user);
+      }).catch((error) => {
+        console.log(error);
+      })
   }
 
-  showTweets(user) {
+  showTweets() {
     axios.get('/twitter', {
       params: {
-        user: user
+        user: this.state.user
       }
     })
       .then((res) => {
-        console.log('Success!')        
-        console.log(res);
-    }).catch((error) => {
+        this.setState({
+          latestTweet: {
+            username: res.config.params.user,
+            tweet: res.data[0].text,
+            tweetTime: res.data[0].created_at,
+            numberOfFavorites: res.data[0].favorite_count,
+            numberOfRetweets: res.data[0].retweet_count
+          }
+        })               
+      })
+      .then((res) => {
+        this.sendMessage()
+      })
+      .catch((error) => {
         console.log('Error')              
         console.log(error);
     })
   }
 
   updateInput(e) {
-    this.setState({
-      user: e.target.value
-    });
+    if (e.target.name === 'user') {
+      this.setState({
+        user: e.target.value
+      });
+    } else {
+      this.setState({
+        phoneNumber: e.target.value
+      });
+    }
   }
 
   render () {
   	return (
       <div>
         <form>
-          <input onChange={this.updateInput.bind(this)} type="text" name="user" />
+          Twitter Handle: <input onChange={this.updateInput.bind(this)} type="text" name="user" /><br />
+          Your Phone Number: <input onChange={this.updateInput.bind(this)} type="text" name="phone-number" />          
         </form>
-        <button onClick={this.sendMessage.bind(this)}>SUB</button>
+        <button onClick={this.showTweets.bind(this)}>SUB</button>
       </div>
     )
   }

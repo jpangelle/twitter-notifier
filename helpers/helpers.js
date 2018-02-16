@@ -22,11 +22,11 @@ function getTweets(user, callback) {
   });
 }
 
-function sendMessage() {
+function sendMessage(num, message) {
   const client = new twilio(keys.twilio.ACCOUNDSID, keys.twilio.AUTHTOKEN);
-  client.messages.create({
-    body: 'Hello World',
-    to: '+13372771134',
+  return client.messages.create({
+    body: `${message}`,
+    to: `+${num}`,
     from: '+13372427294'
   })
 }

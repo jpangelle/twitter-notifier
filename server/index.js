@@ -8,8 +8,23 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json())
 
 app.post('/twilio', (req, res) => {
-  res.json('message successfully sent');
-  //helpers.sendMessage().then((message) => res.json(message.sid));
+  const number = req.body.number;
+  const {
+    username, 
+    tweet, 
+    tweetTime: time,
+    numberOfFavorites: faves,
+    numberOfRetweets: rts
+  } = req.body.latestTweet;  
+  const tweetStringed = `Hello! ${username}'s latest tweet was: 
+  
+"${tweet}"
+
+This was tweeted at ${time} and has ${faves} favorites and ${rts} retweets.`
+  //comment this out when demoing
+  //res.json('Number:', number);
+  //uncomment out when demoing
+  helpers.sendMessage(number, tweetStringed).then((message) => res.json(message.sid));
 })
 
 app.get('/twitter', (req, res) => {

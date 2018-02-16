@@ -18,6 +18,8 @@ function getTweets(user, callback) {
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
     if (!error) {
       callback(tweets);
+    } else {
+      callback('error');
     }
   });
 }

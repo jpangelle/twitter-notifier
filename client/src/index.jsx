@@ -31,23 +31,37 @@ class App extends React.Component {
       }
     })
       .then((res) => {
-        this.setState({
-          latestTweet: {
-            username: res.config.params.user,
-            tweet: res.data[0].text,
-            tweetTime: res.data[0].created_at,
-            numberOfFavorites: res.data[0].favorite_count,
-            numberOfRetweets: res.data[0].retweet_count
-          }
-        })               
-      })
-      .then((res) => {
-        this.sendMessage()
+        if (res.data === 'error') {
+          alert("User does not exist!");
+        } else {
+          this.setState({
+            latestTweet: {
+              username: res.config.params.user,
+              tweet: res.data[0].text,
+              tweetTime: res.data[0].created_at,
+              numberOfFavorites: res.data[0].favorite_count,
+              numberOfRetweets: res.data[0].retweet_count
+            }
+          })
+          this.sendMessage()
+        }
       })
       .catch((error) => {
         console.log('Error')              
         console.log(error);
     })
+  }
+
+  inputChecker() {
+    if (this.state.user === '') {
+      alert('Please enter twitter handle');
+      return;
+    }
+    if (this.state.phoneNumber === null) {
+      alert('Please enter a phone number');
+      return;
+    }
+    this.showTweets();
   }
 
   updateInput(e) {
@@ -62,14 +76,28 @@ class App extends React.Component {
     }
   }
 
+  enterPressed(e) {
+    if (e.keyCode === 13) {
+      this.inputChecker();
+    }
+  }
+
+
   render () {
   	return (
-      <div>
-        <form>
-          Twitter Handle: <input onChange={this.updateInput.bind(this)} type="text" name="user" /><br />
-          Your Phone Number: <input onChange={this.updateInput.bind(this)} type="text" name="phone-number" />          
-        </form>
-        <button onClick={this.showTweets.bind(this)}>Send Latest Tweet</button>
+      <div className="main">
+        <div className="header">
+          Enter a Twitter handle to get a text message of their latest tweet.
+        </div>
+        <div className="form-container">
+          <form>
+            Twitter Handle: <input onKeyUp={this.enterPressed.bind(this)} onChange={this.updateInput.bind(this)} type="text" name="user" /><br />
+            Your Phone Number: <input onKeyUp={this.enterPressed.bind(this)} onChange={this.updateInput.bind(this)} type="" name="phone-number" />          
+          </form>
+        </div>
+        <div className="button-container">
+          <button onClick={this.inputChecker.bind(this)}>Send Latest Tweet</button>
+        </div>
       </div>
     )
   }

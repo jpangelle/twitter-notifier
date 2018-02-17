@@ -71,18 +71,44 @@ input {
 }
 
 button {
-  width: 160px;
+  width: 200px;
   height:40px;
   border-radius: 5px;
   outline: 0;
   font-family: 'Raleway', sans-serif;
-  background: #0084b4;
   color: white;
   font-size: 14px;
   margin-bottom: 30px;
+  box-shadow: 0 4px rgb(187, 187, 187);
+}
+button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
 }
 
-button:hover {
+.before-sent-sending {
+  background: #0084b4;
+}
+
+.before-sent-sending:hover {
   background: #006a91;
+  transition: background .2s
+}
+
+.success-send {
+  background: #08a400;
+}
+
+.success-send:hover {
+  background: #068000;
+  transition: background .2s
+}
+
+.error-send {
+  background: #d00101;
+}
+
+.error-send:hover {
+  background: #9a0000;  
   transition: background .2s
 }

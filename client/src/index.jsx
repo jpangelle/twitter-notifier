@@ -1,30 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+const PNF = require('google-libphonenumber').PhoneNumberFormat;
 
 class App extends React.Component {
   constructor(props) {
   	super(props)
   	this.state = {
       user: '',
-      phoneNumber: null,
-      latestTweet: null
+      phoneNumber: '',
+      latestTweet: null,
+      sendingState: null,
+      formattedPhoneNumber: null
   	}
   }
 
+  resetButtonAndState() {
+    setTimeout(() => {
+      this.setState({
+        user: '',
+        phoneNumber: '',
+        latestTweet: null,
+        sendingState: null
+      }) 
+    }, 3000);
+  }
+
   sendMessage() {
-    axios.post('/message', { 
-      number: this.state.phoneNumber,
+    axios.post('/message', {
+      number: this.state.formattedPhoneNumber,
       latestTweet: this.state.latestTweet
     })
       .then((res) => {
+        this.setState({
+          sendingState: 'success'
+        })
       })
       .catch((error) => {
+        this.setState({
+          sendingState: 'error'
+        })
         console.log(error);
       })
   }
 
   showTweets() {
+    this.setState({
+      sendingState: 'sending'
+    })
     axios.get('/twitter', {
       params: {
         user: this.state.user
@@ -54,13 +78,22 @@ class App extends React.Component {
 
   inputChecker() {
     if (this.state.user === '') {
-      alert('Please enter twitter handle');
+      alert('Please enter a valid twitter handle');
       return;
-    }
-    if (this.state.phoneNumber === null) {
+    } 
+    if (this.state.phoneNumber === '' || this.state.phoneNumber.length < 2) {
       alert('Please enter a phone number');
       return;
+    } 
+    const number = phoneUtil.parse(this.state.phoneNumber, 'US');
+    const isValid = phoneUtil.isValidNumber(number);
+    if (!isValid){
+      alert('Please enter a valid phone number'); 
+      return;     
     }
+    this.setState({
+      formattedPhoneNumber: phoneUtil.format(number, PNF.E164)
+    })
     this.showTweets();
   }
 
@@ -75,6 +108,32 @@ class App extends React.Component {
       console.log('you did it!')
     }
   }
+
+  changeButtonClass() {
+    if (this.state.sendingState === null || this.state.sendingState === 'sending') {
+      return "before-sent-sending";
+    } else if (this.state.sendingState === 'success') {
+      return "success-send";
+    } else if (this.state.sendingState === 'success') {
+      return "error-send";
+    }
+  }
+
+  changeButtonText() {
+    if (this.state.sendingState === null) {
+      return "Text Latest Tweet";
+    } else if (this.state.sendingState === 'sending') {
+      return "Texting Latest Tweet...";
+    } else if (this.state.sendingState === 'success') {
+      this.resetButtonAndState();      
+      return "Sent!";
+    } else if (this.state.sendingState === 'error') {
+      this.resetButtonAndState();
+      return "Error! Try Again"
+    }
+  }
+
+
 
   render () {
   	return (
@@ -102,6 +161,7 @@ class App extends React.Component {
                 id="user"
                 onKeyUp={this.autoCompleteName.bind(this)} 
                 onChange={this.updateInput.bind(this)} 
+                value={this.state.user}
                 type="text"
                 placeholder="elonmusk" 
                 name="user" 
@@ -119,16 +179,15 @@ class App extends React.Component {
                   className="input"
                   id="phoneNumber"
                   onChange={this.updateInput.bind(this)}
+                  value={this.state.phoneNumber}                  
                   type="tel"
-                  pattern="[1]?[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
-                  size="10"
                   placeholder="555-123-4567"
                   name="phoneNumber"
                 />
               </div>
             </div>
             <div className="button-container">
-              <button>Text Latest Tweet</button>
+              <button className={this.changeButtonClass()}>{this.changeButtonText()}</button>
             </div>
           </form>
         </div>

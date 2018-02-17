@@ -1,47 +1,88 @@
-html {
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+html, body {
   height: 100%;
 }
 
 body {
-  min-height: 100%;
+  font-family: 'Raleway', sans-serif;
+  background: #0084b415;
+  margin: 0;
 }
 
 #app {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
 }
 
 .main {
-  min-height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 50% 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  background: white;
+  width: 40%;
+  min-width: 300px;
+  margin: 0 auto;
+  box-shadow: 4px 4px 9px rgba(0, 0, 0, .15);
+  border-radius: 5px;
 }
 
-.header {
-  grid-column: 1/4;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
+.logo > img {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.phone-number-container {
+  margin-top: 25px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .form-container {
-  grid-column: 2/3;
-  grid-row: 2/3;
   display: flex;
-  align-items: center;
+  margin-top: 20px;
   justify-content: center;
 }
 
+label {
+  color: #0084b4;
+  font-size: 19px;  
+  display: block;
+}
+
+input {
+  height: 22px;
+  font-size: 18px;
+  width: 250px;
+  border-radius: 5px;
+  border: solid #BEBEBE 1px;
+  padding: 4px;
+}
+
 .button-container {
-  grid-column: 2/3;
-  grid-row: 3/4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  margin-top: 25px;
+}
+
+::-webkit-input-placeholder {
+  color: #C8C8C8;
+}
+
+button {
+  width: 160px;
+  height:40px;
+  border-radius: 5px;
+  outline: 0;
+  font-family: 'Raleway', sans-serif;
+  background: #0084b4;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+button:hover {
+  background: #006a91;
+  transition: background .2s
 }

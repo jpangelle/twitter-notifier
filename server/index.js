@@ -8,7 +8,7 @@ const moment = require('moment');
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json())
 
-app.post('/twilio', (req, res) => {
+app.post('/message', (req, res) => {
   const number = req.body.number;
   const date = moment(req.body.latestTweet.tweetTime, "ddd MMM DD HH:mm:ss Z YYYY").format('dddd, MMMM Do, YYYY [at] h:mm a');
   const {

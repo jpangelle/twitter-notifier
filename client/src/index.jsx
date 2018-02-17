@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   sendMessage() {
-    axios.post('/twilio', { 
+    axios.post('/message', { 
       number: this.state.phoneNumber,
       latestTweet: this.state.latestTweet
     })
@@ -65,38 +65,72 @@ class App extends React.Component {
   }
 
   updateInput(e) {
-    if (e.target.name === 'user') {
-      this.setState({
-        user: e.target.value
-      });
-    } else {
-      this.setState({
-        phoneNumber: e.target.value
-      });
-    }
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
-  enterPressed(e) {
-    if (e.keyCode === 13) {
-      this.inputChecker();
+  autoCompleteName(e) {
+    if ((e.keyCode > 48 && e.keyCode < 91) || e.keyCode === 189) {
+      console.log('you did it!')
     }
   }
-
 
   render () {
   	return (
       <div className="main">
-        <div className="header">
-          Enter a Twitter handle to get a text message of their latest tweet.
+        <div className="logo">
+          <img 
+            src="https://i.imgur.com/6DzGKff.png"
+            alt="logo" 
+          />
         </div>
         <div className="form-container">
-          <form>
-            Twitter Handle: <input onKeyUp={this.enterPressed.bind(this)} onChange={this.updateInput.bind(this)} type="text" name="user" /><br />
-            Your Phone Number: <input onKeyUp={this.enterPressed.bind(this)} onChange={this.updateInput.bind(this)} type="" name="phone-number" />          
+          <form onSubmit={e => {
+            e.preventDefault()
+            this.inputChecker()
+          }}>
+            <div className="twitter-handle-container">
+              <label 
+                htmlFor="user"
+                className="form-header"
+              >
+                Twitter Handle:
+              </label>
+              <input 
+                className="input"
+                id="user"
+                onKeyUp={this.autoCompleteName.bind(this)} 
+                onChange={this.updateInput.bind(this)} 
+                type="text"
+                placeholder="elonmusk" 
+                name="user" 
+              />
+            </div>
+            <div className="phone-number-container">
+              <label 
+                htmlFor="phoneNumber"
+                className="form-header"
+              >
+                Your Phone Number:
+              </label>
+              <div>
+                <input 
+                  className="input"
+                  id="phoneNumber"
+                  onChange={this.updateInput.bind(this)}
+                  type="tel"
+                  pattern="[1]?[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
+                  size="10"
+                  placeholder="555-123-4567"
+                  name="phoneNumber"
+                />
+              </div>
+            </div>
+            <div className="button-container">
+              <button>Text Latest Tweet</button>
+            </div>
           </form>
-        </div>
-        <div className="button-container">
-          <button onClick={this.inputChecker.bind(this)}>Send Latest Tweet</button>
         </div>
       </div>
     )

@@ -53,12 +53,39 @@ label {
 }
 
 input {
+  margin: 5px;
   height: 22px;
   font-size: 18px;
   width: 250px;
   border-radius: 5px;
-  border: solid #BEBEBE 1px;
   padding: 4px;
+  outline: 0;
+}
+
+input:focus {
+  border: solid 1.5px #006a91;
+}
+
+.input-normal {
+  border: solid #BEBEBE 1.5px;
+}
+
+.input-error {
+  border: solid 1.5px #d00101;
+}
+
+.validator-placeholder {
+  min-height: 12px;
+  color: transparent;
+  font-size: 10px;
+  user-select: none;
+}
+
+.validator {
+  font-size: 10px;
+  color: #d00101;
+  text-align: center;
+  transition: .2s;
 }
 
 .button-container {
@@ -81,6 +108,7 @@ button {
   margin-bottom: 30px;
   box-shadow: 0 4px rgb(187, 187, 187);
 }
+
 button:active {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
@@ -88,11 +116,12 @@ button:active {
 
 .before-sent-sending {
   background: #0084b4;
+  transition: background .4s;
 }
 
 .before-sent-sending:hover {
   background: #006a91;
-  transition: background .2s
+  transition: background .2s;
 }
 
 .success-send {
@@ -101,7 +130,7 @@ button:active {
 
 .success-send:hover {
   background: #068000;
-  transition: background .2s
+  transition: background .2s;
 }
 
 .error-send {
@@ -110,5 +139,6 @@ button:active {
 
 .error-send:hover {
   background: #9a0000;  
-  transition: background .2s
+  transition: background .2s;
 }
+

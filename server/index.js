@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request')
 const app = express();
-const helpers = require('../helpers/helpers');
+const helpers = require('../helpers/backend-helpers');
 const moment = require('moment');
 
 app.use(express.static(__dirname + '/../client/dist'));

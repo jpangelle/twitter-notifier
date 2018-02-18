@@ -1,6 +1,5 @@
 const twitter = require('twitter');
 const twilio = require('twilio');
-const keys = require('../config.js');
 const dotenv = require('dotenv');
 
 dotenv.config();

@@ -1,13 +1,17 @@
 const twitter = require('twitter');
 const twilio = require('twilio');
 const keys = require('../config.js');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const twitterClient = new twitter({
-  consumer_key: keys.twitter.CONSUMER_KEY,
-  consumer_secret: keys.twitter.CONSUMER_SECRET,
-  access_token_key: keys.twitter.ACCESS_TOKEN_KEY,
-  access_token_secret: keys.twitter.ACCESS_TOKEN_SECRET
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
-const twilioClient = new twilio(keys.twilio.ACCOUNTSID, keys.twilio.AUTHTOKEN);
+const twilioClient = new twilio(process.env.TWILIO_ACCOUNTSID, process.env.TWILIO_AUTHTOKEN);
 
 function getTweets(user, callback) {
   

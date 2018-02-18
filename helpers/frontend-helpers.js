@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 const PNF = require('google-libphonenumber').PhoneNumberFormat;
-import $ from 'jquery';
 
 export function resetFormData(context) {
   setTimeout(() => {
@@ -116,9 +115,10 @@ export function changeButtonClass(context) {
   }
 }
 
-export function blur() {
-  $("input[name=user]").blur();
-  $("input[name=phoneNumber]").blur();
+export function blur(context) {
+  context.twitterHandleInput.blur();
+  context.phoneNumberInput.blur();
+  
 }
 
 export function changeButtonText(context) {

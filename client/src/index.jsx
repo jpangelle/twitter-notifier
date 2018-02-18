@@ -53,7 +53,7 @@ class App extends React.Component {
         <div className="form-container">
           <form onSubmit={e => {
             e.preventDefault()
-            blur()
+            blur(this)
             inputChecker(this)
           }}>
             <div className="twitter-handle-container">
@@ -63,7 +63,8 @@ class App extends React.Component {
               >
                 Twitter Handle:
               </label>
-              <input 
+              <input
+                ref={(input) => { this.twitterHandleInput = input; }}
                 className={changesInputBorderUser(this)}
                 id="user"
                 onKeyDown={this.clearError.bind(this)}
@@ -92,6 +93,7 @@ class App extends React.Component {
               </label>
               <div>
                 <input 
+                  ref={(input) => { this.phoneNumberInput = input; }}
                   className={changesInputBorderPhone(this)}
                   id="phoneNumber"
                   onKeyDown={this.clearError.bind(this)}

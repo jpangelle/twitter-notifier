@@ -99,7 +99,7 @@ class App extends React.Component {
                   onKeyDown={this.clearError.bind(this)}
                   onChange={this.updateInput.bind(this)}
                   value={this.state.phoneNumber}                  
-                  type="tel"
+                  type="text"
                   placeholder="555-123-4567"
                   name="phoneNumber"
                 />

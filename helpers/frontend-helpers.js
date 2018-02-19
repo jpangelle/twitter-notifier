@@ -85,7 +85,13 @@ export function inputChecker(context) {
     })
     return;
   }
-  if (context.state.phoneNumber === '' || context.state.phoneNumber.length < 2) {
+  if (context.state.user === '') {
+    context.setState({
+      errorStateUser: true
+    })
+    return;
+  }
+  if (context.state.phoneNumber === '' || context.state.phoneNumber.length < 2 || context.state.phoneNumber.match(/[a-z]/i)) {
     context.setState({
       errorStatePhone: true
     })

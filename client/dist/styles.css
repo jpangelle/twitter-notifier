@@ -18,7 +18,7 @@ body {
 
 .main {
   background: white;
-  width: 40%;
+  width: 30%;
   min-width: 300px;
   margin: 0 auto;
   box-shadow: 4px 4px 9px rgba(0, 0, 0, .15);
@@ -48,14 +48,14 @@ body {
 
 label {
   color: #0084b4;
-  font-size: 19px;  
+  font-size: 22px;  
   display: block;
 }
 
 input {
   margin: 5px;
-  height: 22px;
-  font-size: 18px;
+  height: 24px;
+  font-size: 20px;
   width: 250px;
   border-radius: 5px;
   padding: 4px;
@@ -75,14 +75,14 @@ input:focus {
 }
 
 .validator-placeholder {
-  min-height: 12px;
+  min-height: 14px;
   color: transparent;
-  font-size: 10px;
+  font-size: 12px;
   user-select: none;
 }
 
 .validator {
-  font-size: 10px;
+  font-size: 12px;
   color: #d00101;
   text-align: center;
   transition: .2s;
@@ -98,13 +98,13 @@ input:focus {
 }
 
 button {
-  width: 200px;
-  height:40px;
+  width: 230px;
+  height:48px;
   border-radius: 5px;
   outline: 0;
   font-family: 'Raleway', sans-serif;
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 30px;
   box-shadow: 0 4px rgb(187, 187, 187);
 }
@@ -141,4 +141,57 @@ button:active {
   background: #9a0000;  
   transition: background .2s;
 }
+
+/* Portrait */
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+  .main {
+    background: white;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  label {
+    font-size: 48px;
+    display: block;
+  }
+
+  input {
+    margin: 30px;
+    height: 64px;
+    font-size: 48px;
+    width: 525px;
+    border-radius: 5px;
+    padding: 5px;
+    outline: 0;
+  }
+
+  .logo > img {
+    width: 300px;
+    margin-top: 70px;
+  }
+
+  button {
+    width: 450px;
+    height: 80px;
+    font-size: 34px;
+    margin-bottom: 100px;
+  }
+
+  .validator-placeholder {
+    min-height: 28px;
+    font-size: 25px;
+  }
+
+  .validator {
+    font-size: 25px;
+  }
+
+}
+
 

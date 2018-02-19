@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Latest Tweet
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  This web app is to be used by any person's interested in Twitter users and want the convienience of fetching their latest tweet via text.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  This is a simple yet effective app win which people can bypass going to Twitter's website and fumbling around in order to see a user's latest tweet.
 
 ## Problem ##
   > Describe the problem your product solves.
+  This app helps avoid meandering through Twitter's rich environment when someone just wants to see a user's latest tweet.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  This web app provides a seamless and straight forward solution. Enter in a Twitter handle. Enter in a phone number, most likely your own and recieve that Twitter user's latest tweet, instantly.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "You walk into the break room at work and hear a few coworkers talking about Trump's latest tweet. You don't feel like going to Twitter.com, searching for Trump, and dodging ads and distractions. You go to the one stop shop, and in seconds, you can join in the conversation of the latest tweet."
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  It is as easy as knowing your target's Twitter handle and the target phone number. Dynamic searching of Twitter handles will be coming soon in version 2.0 so you do not have to memorize Twitter handles.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "I always found myself wondering what my family member, my friend, or my local leaders were tweeting, but I don't know how to use Twitter. Now with this site, I can stay in the know and get involved.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Always remember, when you want to join in the conversation, Latest Tweet is there to help you.

@@ -58,7 +58,14 @@ export function showTweets(context) {
           sendingState: 'error'
         })
         changeButtonClass(context);
-      } else {
+      } else if (!res.data.length) {
+        context.setState({
+          latestTweet: {
+            username: res.config.params.user,
+          }
+        })
+        sendMessage(context);
+      } else if (res.data.length) {
         context.setState({
           latestTweet: {
             username: res.config.params.user,
@@ -85,7 +92,7 @@ export function inputChecker(context) {
     })
     return;
   }
-  if (context.state.user === '') {
+  if (context.state.user === '' || context.state.user[1] === '@') {
     context.setState({
       errorStateUser: true
     })

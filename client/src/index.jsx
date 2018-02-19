@@ -71,7 +71,7 @@ class App extends React.Component {
                 onChange={this.updateInput.bind(this,)} 
                 value={this.state.user}
                 type="text"
-                placeholder="elonmusk" 
+                placeholder="elonmusk or @elonmusk" 
                 name="user" 
               />
             </div>
